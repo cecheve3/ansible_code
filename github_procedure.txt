@@ -1,0 +1,170 @@
+1. In your local browser, open a new tab to https://github.com
+
+2. Click on Sign-up on the landing page.
+
+3. Enter the following information.
+
+	Username - This handle will be shared with career professionals.
+	Email Address - Use an email address you check often.
+	Password - Always make passwords unique and ultimately change them often
+
+4. Now click on the Create account button at the bottom of the screen.
+
+5. At the bottom of the screen, click the green Continue button.
+
+6. Answer the questions as best you can to help the GitHub metrics, and then click Submit at the bottom of the screen.
+
+7. You'll need to verify your email address. Check the email address you used to sign up, and click on the link or button they sent to you.
+
+8. Now that we have a verified GitHub account, let's try tracking some work. In the upper right hand corner, click on your profile icon, then on Your Profile. This is where you can choose to create a bio and a profile. This account is public and the world will look at your code, so be professional.
+
+9. In the center of the screen, click on the word Repositories, which is followed by a 0.
+
+10. Click on the green New button, with the little book icon on it. This creates a repository. Repositories track work.
+
+11. Set the Repository name as mycode.
+
+12. Set the Description as something like, Tracking my code
+
+13. The repository should be set to Public.
+
+14. The README option is always best practice, so check the box. The objective is to describe what your repo contains.
+
+15. Change Add a license: None to GNU General Public License v3.0. Here's the TLDR, "We're comfortable with the world borrowing our code, provided they give us credit, should it get used."
+
+16. Now click the green Create repository button at the bottom of the screen.
+
+17. Your new repo will appear. Click on the file, README.md.
+
+18. You'll find a small pencil on the right side of the screen. Click on this.
+
+19. Enter the following template into your README.md and then customize it. The goal is to advertise to the world the purpose of your repository. Don't hold back. If you're a 1st time student interested in Microservices and/or Python, let the GitHub community know! FYI, files on GitHub are written in markdown which is a web-friendly way to format text. Read about it here: https://guides.github.com/features/mastering-markdown/
+
+
+20. When you finish, click the green Commit changes button at the bottom of the screen.
+
+21. Generally, we don't want to use GitHub as a development tool. Just for viewing. But to get our README.md started, this is fine. From now on, we'll only add to our repo from the command line.
+
+22. At the top of the screen, click on your username to return to your homepage.
+
+23. You should see your repository mycode.
+
+24. GitHub lets you have friends just like other social media platforms. Checkout all of the Alta3 Python Instructors:
+
+25. You might try asking some fellow students for their usernames and repeating the above steps.
+
+RETURN TO YOUR ALTA3 TMUX ENVIRONMENT NOW
+
+26. Now we want to sync our command line (where we run git) with GitHub. The goal is to get our code into the mycode repo we created. Move to the ~/.ssh home directory.
+
+	student@bchd:~$ cd /home/student/.ssh
+
+27. Now we will generate a new RSA keypair. We will use this to communicate securely with GitHub because as of August 2021, GitHub will no longer accept passwords from us. This will generate two files, the private key (id_rsa_github) and the public key (id_rsa_github.pub).
+
+	student@bchd:~/.ssh$ ssh-keygen -f id_rsa_github
+
+
+Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase):
+
+When you see this, you will need to hit enter twice
+
+
+Enter same passphrase again:
+Your identification has been saved in id_rsa_github.
+Your public key has been saved in id_rsa_github.pub.
+The key fingerprint is:
+SHA256:DFjw7WCP+u2luMtPATqKHGBi/+XNUzlRYfqIYz8S2/Q student@bchd
+The key's randomart image is:
++---[RSA 2048]----+
+|    ...      +.  |
+|     + .    +    |
+|oo  . * .  o     |
+|= .  o O  . =    |
+| . .o ..S= * .   |
+|.....oo +.O o    |
+|... .. ..*.+ E   |
+|     o + oo .    |
+|      *==        |
++----[SHA256]-----+
+
+Next we need to copy the text from inside of the id_rsa_github.pub public key into our clipboard. We will need to paste this into GitHub soon.
+
+	student@bchd:~/.ssh$ cat id_rsa_github.pub
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCvTemj7NIlxXEu97VyN4wcmob+F0wQ0nPinZSdUvlWSGAx790EmfXmckZ01/aFDOKIA4OZWYtW95DaGqQ+Tja3QUYlAdTdIlp4TTgH3ZE+KdaLc16rN9FzHv8hwdLFx8CugNw/u/sDbYjEM1qlazB5fbAf0LZ+mN5iCDn6IaYbPZ0wQdF9s4RI/z5wS5wE/J++KV/xJA0f2ICZwaKj4Kq/fron2KoYRkCYcma0oHYvVSnnuxCVGbOJdhWK1LiJRPweNUajp0OItECJxgCR1gB/DVEWnBmknOcPnY6q3QeaUrm28nPSAjGTkfFSHDbOJptaqKaSkRhwNsuOGiw6KQ1R student@bchd
+
+Select all of the output and copy it. NOTE: Yours will be different than the one listed above!
+
+29. At the top of the screen, click on your username to return to your homepage.
+
+30. You should see your repository mycode. Click into it.
+
+31. Near the top right of the screen, there is a little gear icon that says Settings. Click on that.
+
+32. On the left of the screen, click on Deploy Keys. Deploy keys are essentially a token that we set up that allow somebody to read from, and optionally write to, our repository, even if it is private. They just need to have the private key set up on their system as a means of authenticating with the public key stored on github.
+
+33. Your screen should look like the following. Click on the button that says Add deploy key.
+
+34. Give your key a name. alta3 environment would work. Then paste your key (from id_rsa_github.pub) into the large text box. And also click on the checkbox that says Allow write access. Then, click Add key.
+
+
+RETURN TO YOUR ALTA3 TMUX ENVIRONMENT NOW
+
+35. Fantastic. Let's set up git for first-time use. First of all, let's move back to our home directory.
+
+	student@bchd:~/.ssh$ cd ~
+
+36. Replace the name Mona Lisa with your own! When you perform a git commit, this is the name that will be applied to the commit (the save).
+
+	student@bchd:~$ git config --global user.name "Mona Lisa"
+
+37. Replace the username portion (only) of the email address monalisa@users.noreply.github.com with your github username. When you perform a git commit, this is the email that will be applied to the commit (the save). The domain users.noreply.github.com with cause emails sent to you to end up in your GitHub account (not your SMTP inbox).
+
+	student@bchd:~$ git config --global user.email "monalisa@users.noreply.github.	      com"
+
+38. Customize the command below so that the entire <github-username> is replaced with only your GitHub username. The angle brackets are not allowed.
+
+	student@bchd:~$ git clone git@github.com:<github-username>/mycode.git
+
+If you run into an error with this step, read the instructions once more and try it again!
+
+39. You should now have a new folder (mycode) in your home directory. Move into it.
+
+	student@bchd:~$ cd /home/student/mycode/
+
+40. Let's edit README.md
+
+	student@bchd:~/mycode$ vim /home/student/mycode/README.md
+
+41. At the top of your README.md file, within your project description, add a sentence about wanting to learn how to version control projects with git. (Press the i key to enter insert mode).
+
+42. Exit insert mode with ESC.
+
+43. Save (write) and exit with :wq and then ENTER
+
+44. The following steps are ones you should memorize. You'll be issuing these commands all the time. First issue git status, which will reveal if you added something and forgot about it.
+
+	student@bchd:~/mycode$ git status
+
+45. Next we'll describe what we want to add to our repo. We'll wildcard this, so everything in the ~/mycode/ directory is added.
+
+	student@bchd:~/mycode$ git add *
+
+46. Time to perform a commit. This makes a new version.
+
+	student@bchd:~/mycode$ git commit -m "First commit to learn about version cont	      rolling"
+
+47. Now push your new version to GitHub for tracking. By default, the keyword origin points to the repo you cloned the repo from. Enter the following followed by your username and password.
+
+	student@bchd:~/mycode$ git push origin
+
+48. Go up to GitHub, and see if your README.md file has changed. Remember, we don't want to edit any files in GitHub anymore. Just validate that GitHub has the new data.
+
+49. You should get in the habit of issuing the following commands each time you have a success, or end for the day:
+
+	git status
+	git add /home/student/mycode/*
+	git commit -m "reason for commit"
+	git push origin
+
